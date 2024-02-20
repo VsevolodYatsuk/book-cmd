@@ -1,0 +1,50 @@
+[
+  {
+    "Id": 1,
+    "Title": "War and Peace",
+    "Author": "Tolstoy",
+    "Year": 1869
+  },
+  {
+    "Id": 2,
+    "Title": "Crime and Punishment",
+    "Author": "Dostoevsky",
+    "Year": 1866
+  },
+  {
+    "Id": 3,
+    "Title": "1984",
+    "Author": "Orwell",
+    "Year": 1949
+  },
+  {
+    "Id": 4,
+    "Title": "Gone with the Wind",
+    "Author": "Mitchell",
+    "Year": 1936
+  },
+  {
+    "Id": 5,
+    "Title": "Fathers and Sons",
+    "Author": "Turgenev",
+    "Year": 1862
+  },
+  {
+    "Id": 6,
+    "Title": "Mumu",
+    "Author": "Turgenev",
+    "Year": 1854
+  },
+  {
+    "Id": 7,
+    "Title": "The Death of Ivan Ilyich",
+    "Author": "Tolstoy",
+    "Year": 1886
+  },
+  {
+    "Id": 8,
+    "Title": "Eugene Onegin",
+    "Author": "Pushkin",
+    "Year": 1833
+  }
+]

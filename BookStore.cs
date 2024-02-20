@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace BookStore
 {
@@ -14,11 +17,11 @@ namespace BookStore
 
     class Program
     {
-        static List<Book> books = new List<Book>();
+        static List<Book> books;
 
         static void Main(string[] args)
         {
-            SeedData();
+            LoadData();
 
             Console.WriteLine("Добро пожаловать в книжный магазин!");
             Console.WriteLine("Введите 'help' для получения списка команд.");
@@ -69,16 +72,19 @@ namespace BookStore
             }
         }
 
-        static void SeedData()
+        static void LoadData()
         {
-            books.Add(new Book { Id = 1, Title = "Война и мир", Author = "Толстой", Year = 1869 });
-            books.Add(new Book { Id = 2, Title = "Преступление и наказание", Author = "Достоевский", Year = 1866 });
-            books.Add(new Book { Id = 3, Title = "1984", Author = "Оруэлл", Year = 1949 });
-            books.Add(new Book { Id = 4, Title = "Унесенные ветром", Author = "Митчелл", Year = 1936 });
-            books.Add(new Book { Id = 5, Title = "Отцы и дети", Author = "Тургенев", Year = 1862 });
-            books.Add(new Book { Id = 6, Title = "Муму", Author = "Тургенев", Year = 1854 });
-            books.Add(new Book { Id = 7, Title = "Смерть Ивана Ильича", Author = "Толстой", Year = 1886 });
-            books.Add(new Book { Id = 8, Title = "Евгений Онегин", Author = "Пушкин", Year = 1833 });
+            using (StreamReader file = new StreamReader(@"C:\book-cmd\book-cmd\books.json", Encoding.UTF8))
+            {
+                string json = file.ReadToEnd();
+                books = JsonConvert.DeserializeObject<List<Book>>(json);
+            }
+        }
+
+        static void SaveData()
+        {
+            string json = JsonConvert.SerializeObject(books, Formatting.Indented);
+            File.WriteAllText("books.json", json);
         }
 
         static void ProcessOption(string option)
@@ -168,6 +174,7 @@ namespace BookStore
             if (bookToRemove != null)
             {
                 books.Remove(bookToRemove);
+                SaveData();
                 Console.WriteLine($"Книга '{bookToRemove.Title}' успешно куплена.");
             }
             else
